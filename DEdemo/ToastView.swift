@@ -42,7 +42,7 @@ struct ToastView: View {
                                 linkText
                             }
                         }
-//                        Spacer()
+
                         
                         // Close button
                         Button(action: {

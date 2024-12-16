@@ -8,8 +8,9 @@ import SwiftUI
 
 struct CardView: View {
     let title: String
-    let items: [(icon: String, text: String)] // Each item has an icon name and text
-    let iconColor: Color // Icon color for this card
+    let items: [(icon: String, text: String)]
+    let iconColor: Color
+    let backgroundColor: Color
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -33,11 +34,11 @@ struct CardView: View {
                 .padding(.bottom, 8)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-                Divider() // Adds a line between items
+                Divider()
             }
         }
         .padding()
-        .background(Color.white)
+        .background(backgroundColor)
         .cornerRadius(12)
         .shadow(color: Color.gray.opacity(0.3), radius: 5, x: 0, y: 4)
         .padding(.horizontal, 16)

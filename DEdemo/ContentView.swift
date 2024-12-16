@@ -33,7 +33,8 @@ struct ContentView: View {
                                             (icon: "checkmark.circle", text: "First claim this offer. Then enroll by reviewing and accepting the terms and conditions."),
                                             (icon: "checkmark.circle", text: "Schedule an installation for your doorbell and thermostat."),
                                             (icon: "checkmark.circle", text: "Vivint will give you a call before installation. When they complete installation you will have access to the Vivint app and services.")
-                                        ], iconColor: .green
+                                        ], iconColor: .green,
+                                        backgroundColor: Color.white
                                     )
                     
                     NavigationLink("Go to Another Page", value: "AnotherPage") 
@@ -52,7 +53,7 @@ struct ContentView: View {
                     },
                     image: Image("doorbell"),
                     backgroundColor: .black,
-                    duration: 3.0,
+                    duration: 20.0,
                     isVisible: $showToast
                 )
             }

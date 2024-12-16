@@ -22,7 +22,8 @@ struct AnotherPage: View {
                                         (icon: "xmark.circle", text: "Make sure your thermostat and devices are connected to power."),
                                         (icon: "xmark.circle", text: "Contact support if you face issues during installation.")
                                     ],
-                                    iconColor: .red // Set the icon color to red
+                                    iconColor: .red,
+                                    backgroundColor: Color.green
                                 )
 
                 Button("Show Another Toast") {
