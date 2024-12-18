@@ -9,6 +9,7 @@ import SwiftUI
 struct AnotherPage: View {
     @State private var showToast = false
     @State private var showModal = false
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ZStack {
@@ -23,7 +24,7 @@ struct AnotherPage: View {
                                         (icon: "xmark.circle", text: "Contact support if you face issues during installation.")
                                     ],
                                     iconColor: .red,
-                                    backgroundColor: Color.green
+                                    backgroundColor: colorScheme == .dark ? .blue : .green
                                 )
 
                 Button("Show Another Toast") {
@@ -44,7 +45,7 @@ struct AnotherPage: View {
                     showModal = true
                 },
                 image: Image("monitor"),
-                backgroundColor: .red,
+                backgroundColor: colorScheme == .dark ? .yellow : .red,
                 duration: 60.0,
                 isVisible: $showToast
             )

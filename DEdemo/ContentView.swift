@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showToast = false
+    @Environment(\.colorScheme) var colorScheme // Detects the current color scheme
     
     var body: some View {
         NavigationStack {
@@ -34,7 +35,7 @@ struct ContentView: View {
                                             (icon: "checkmark.circle", text: "Schedule an installation for your doorbell and thermostat."),
                                             (icon: "checkmark.circle", text: "Vivint will give you a call before installation. When they complete installation you will have access to the Vivint app and services.")
                                         ], iconColor: .green,
-                                        backgroundColor: Color.white
+                                        backgroundColor: colorScheme == .dark ? .orange : .white
                                     )
                     
                     NavigationLink("Go to Another Page", value: "AnotherPage") 
@@ -52,7 +53,7 @@ struct ContentView: View {
                         openWebPage("https://www.vivint.com/")
                     },
                     image: Image("doorbell"),
-                    backgroundColor: .black,
+                    backgroundColor: colorScheme == .dark ? .gray : .black,
                     duration: 20.0,
                     isVisible: $showToast
                 )
