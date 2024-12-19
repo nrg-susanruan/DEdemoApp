@@ -10,6 +10,20 @@ struct AnotherPage: View {
     @State private var showToast = false
     @State private var showModal = false
     @Environment(\.colorScheme) var colorScheme
+    
+    var toastBackgroundColorTwo: Color {
+           return colorScheme == .dark ? .yellow : .red
+       }
+       
+       var cardBackgroundColorTwo: Color {
+              return colorScheme == .dark ? .blue : .green
+          }
+    
+       private let cardItemsTwo: [(icon: String, text: String)] = [
+        (icon: "xmark.circle", text: "Review your account settings before proceeding."),
+        (icon: "xmark.circle", text: "Make sure your thermostat and devices are connected to power."),
+        (icon: "xmark.circle", text: "Contact support if you face issues during installation.")
+       ]
 
     var body: some View {
         ZStack {
@@ -18,13 +32,9 @@ struct AnotherPage: View {
                 // Card View
                 CardView(
                                     title: "Steps for Completing Your Setup",
-                                    items: [
-                                        (icon: "xmark.circle", text: "Review your account settings before proceeding."),
-                                        (icon: "xmark.circle", text: "Make sure your thermostat and devices are connected to power."),
-                                        (icon: "xmark.circle", text: "Contact support if you face issues during installation.")
-                                    ],
+                                    items:cardItemsTwo,
                                     iconColor: .red,
-                                    backgroundColor: colorScheme == .dark ? .blue : .green
+                                    backgroundColor: cardBackgroundColorTwo
                                 )
 
                 Button("Show Another Toast") {
@@ -33,8 +43,9 @@ struct AnotherPage: View {
                     }
                 }
                 .padding()
+                
+         
             }
-
             // Toast View
             ToastView(
                 message: "Complete your Vivint offer!",
@@ -45,10 +56,11 @@ struct AnotherPage: View {
                     showModal = true
                 },
                 image: Image("monitor"),
-                backgroundColor: colorScheme == .dark ? .yellow : .red,
-                duration: 60.0,
+                backgroundColor: toastBackgroundColorTwo,
+                duration: 5.0,
                 isVisible: $showToast
             )
+         
         }
         .navigationTitle("AnotherPage")
         .sheet(isPresented: $showModal) {

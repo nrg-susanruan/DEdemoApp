@@ -11,8 +11,22 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showToast = false
-    @Environment(\.colorScheme) var colorScheme // Detects the current color scheme
-    
+    @Environment(\.colorScheme) var colorScheme
+      
+      var toastBackgroundColor: Color {
+          return colorScheme == .dark ? .gray : .black
+      }
+      
+      var cardBackgroundColor: Color {
+             return colorScheme == .dark ? .orange : .white
+         }
+
+       private let cardItems: [(icon: String, text: String)] = [
+           (icon: "checkmark.circle", text: "First claim this offer. Then enroll by reviewing the terms and conditions."),
+           (icon: "checkmark.circle", text: "Schedule an installation for your doorbell and thermostat."),
+           (icon: "checkmark.circle", text: "We will give you a call before installation. When they complete installation you will have access.")
+       ]
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -30,19 +44,15 @@ struct ContentView: View {
                     // Card View
                     CardView(
                                         title: "What should I expect when I enroll in Home Base Essentials?",
-                                        items: [
-                                            (icon: "checkmark.circle", text: "First claim this offer. Then enroll by reviewing and accepting the terms and conditions."),
-                                            (icon: "checkmark.circle", text: "Schedule an installation for your doorbell and thermostat."),
-                                            (icon: "checkmark.circle", text: "Vivint will give you a call before installation. When they complete installation you will have access to the Vivint app and services.")
-                                        ], iconColor: .green,
-                                        backgroundColor: colorScheme == .dark ? .orange : .white
+                                        items: cardItems,
+                                        iconColor: .green,
+                                        backgroundColor: cardBackgroundColor
                                     )
                     
                     NavigationLink("Go to Another Page", value: "AnotherPage") 
-                        .padding()
+//                        .padding()
+             
                 }
-                
-                
                 
                 // Toast View
                 ToastView(
@@ -53,10 +63,12 @@ struct ContentView: View {
                         openWebPage("https://www.vivint.com/")
                     },
                     image: Image("doorbell"),
-                    backgroundColor: colorScheme == .dark ? .gray : .black,
-                    duration: 20.0,
+                    backgroundColor: toastBackgroundColor,
+                    duration: 60.0,
                     isVisible: $showToast
                 )
+                
+            
             }
             .navigationTitle("MainPage")
             .navigationDestination(for: String.self) { value in
@@ -67,7 +79,7 @@ struct ContentView: View {
         }
     }
     
-    /// Function to open a webpage
+    // Function to open a webpage
     func openWebPage(_ urlString: String) {
         guard let url = URL(string: urlString) else {
             print("Invalid URL: \(urlString)")

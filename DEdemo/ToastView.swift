@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ToastView: View {
         let message: String
-        let linkText: Text // Accept a Text object
+        let linkText: Text 
         let linkAction: () -> Void
         let image: Image
         let backgroundColor: Color
